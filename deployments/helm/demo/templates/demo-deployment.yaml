@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.k8sDemo.name.deployment }}
+spec:
+  replicas: {{ .Values.k8sDemo.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.k8sDemo.name.app }}
+  template:
+    metadata:
+      labels:
+        # 这个 k8s-demo 一定要和前面的 selector 的 matchLabels 匹配上
+        app: {{ .Values.k8sDemo.name.app }}
+    # 这个是 Deployment 管理的 Pod 的模板
+    spec:
+      # Pod 里面运行的所有的 container
+      containers:
+        - name: {{ .Values.k8sDemo.name.app }}
+          image: {{ .Values.k8sDemo.image }}
+          ports:
+            - containerPort: {{ .Values.k8sDemo.service.http.targetPort }}

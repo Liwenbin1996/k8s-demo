@@ -1,0 +1,66 @@
+# Default values for demo.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+image:
+  pullPolicy: IfNotPresent
+
+restartPolicy: Always
+
+k8sDemo:
+  name:
+    deployment: k8s-demo-deployment
+    service: k8s-demo-service
+    app: k8s-demo
+  image: wenbin/k8s-demo:v0.0.1
+  replicas: 3
+  service:
+    http:
+      port: 199
+      targetPort: 8082
+      nodePort: 30001
+
+mysql:
+  name:
+    deployment: k8s-demo-mysql-deployment
+    service: k8s-demo-mysql-service
+    app: k8s-demo-mysql
+    pvc: k8s-demo-mysql-pvc
+    pv: k8s-demo-mysql-pv
+    storageClass: db-pv
+  image: mysql:8.4
+  replicas: 1
+  service:
+    port: 3308
+    targetPort: 3306
+    nodePort: 30002
+  volumes:
+    name: mysql-storage
+    mountPath: /var/lib/mysql
+    claimName: k8s-demo-mysql-pvc
+    accessModes:
+      - ReadWriteOnce
+    storage: 1Gi
+    hostPath: "/mnt/data"
+
+redis:
+  name:
+    deployment: k8s-demo-redis-deployment
+    service: k8s-demo-redis-service
+    app: k8s-demo-redis
+  image: redis:latest
+  replicas: 1
+  service:
+    port: 6379
+    targetPort: 6379
+    nodePort: 31379
+
+ingress:
+  name:
+    ingress: k8s-demo-ingress
+    ingressClass: nginx
+  rule:
+    host: localhost
+    path: /
+    pathType: Prefix
+    service: k8s-demo-service
+    targetPort: 199
