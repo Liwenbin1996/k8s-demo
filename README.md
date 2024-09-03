@@ -9,7 +9,7 @@
 - Kubectl
 
 ### Docker & Kubernetes
-方便起见，可以直接安装 docker desktop， 并开启开启 enable kubernetes 功能。
+方便起见，可以直接安装 docker desktop， 并开启 enable kubernetes 功能。
 
 ![img.png](docs/images/img1.png)
 
@@ -206,4 +206,4 @@ kubectl get ingress -n k8s-demo
 同第 7 步
 
 ### 10. 使用 helm 停止服务
-kubectl get pod -n k8s-demo
+helm uninstall demo -n k8s-demo
