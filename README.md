@@ -1,6 +1,6 @@
 # Kubernetes 部署实践 demo
 ## 部署架构
-![img.png](docs/images/img.png)
+![img_1.png](docs/images/img.png)
 
 ## 环境准备
 - Golang v1.22.1+
