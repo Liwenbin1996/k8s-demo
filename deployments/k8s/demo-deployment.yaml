@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-demo-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8s-demo
+  template:
+    metadata:
+      labels:
+        # 这个 k8s-demo 一定要和前面的 selector 的 matchLabels 匹配上
+        app: k8s-demo
+    # 这个是 Deployment 管理的 Pod 的模板
+    spec:
+      # Pod 里面运行的所有的 container
+      containers:
+        - name: k8s-demo
+          image: wenbin/k8s-demo:v0.0.1
+          ports:
+            - containerPort: 8082

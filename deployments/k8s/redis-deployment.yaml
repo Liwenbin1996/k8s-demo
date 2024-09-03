@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-demo-redis-deployment
+  labels:
+    app: k8s-demo-redis-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-demo-redis
+  template:
+    metadata:
+      name: k8s-demo-redis
+      labels:
+        app: k8s-demo-redis
+    spec:
+      containers:
+        - name: k8s-demo-redis
+          image: redis:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 6379
+      restartPolicy: Always
+      
