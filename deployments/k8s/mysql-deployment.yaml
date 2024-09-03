@@ -18,9 +18,6 @@ spec:
       containers:
         - name: k8s-demo-mysql
           image: mysql:8.4
-          env:
-            - name: MYSQL_ROOT_PASSWORD
-              value: root
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3306

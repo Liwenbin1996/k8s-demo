@@ -16,7 +16,6 @@ spec:
       containers:
         - name: {{ .Values.mysql.name.app }}
           image: {{ .Values.mysql.image }}
-          env: {{ .Values.mysql.env }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.mysql.service.targetPort }}
