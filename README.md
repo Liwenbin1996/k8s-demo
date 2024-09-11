@@ -4,8 +4,8 @@
 
 ## 环境准备
 - Golang v1.22.1+
-- docker
-- kubernetes
+- Docker
+- Kubernetes
 - Kubectl
 
 ### Docker & Kubernetes
